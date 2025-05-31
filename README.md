@@ -2,8 +2,9 @@
 
 1. 가상 환경 생성 및 설치
 ```bash
-$ python3 -m venv-bithumb
-$ pip install -r requirements.txt
+$ python3 -m venv venv-bithumb
+$ source venv-bithumb/bin/activate
+(venv-bithumb) $ pip install -r requirements.txt
 ```
 
 2. .env 파일 생성
