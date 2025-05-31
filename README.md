@@ -54,20 +54,26 @@ SERPAPI_API_KEY="<SERPAPI API 키>"
 
 ```bash
 # 1. AWS EC2 인스턴스를 생성 및 해당 인스턴스에 접속
-
+# 2. Git Clone 및 API 키 입력
 $ git clone https://github.com/krooner/bithumb-autotrade.git
 $ cd bithumb-autotrade.git
 $ vim .env
-# API 키 추가
 # 주의: Bithumb API 키의 경우는 해당 인스턴스의 Public IP를 추가하여 새로 발급받은 것을 입력해야함.
 
+# 3. 가상 환경 생성 및 필요 라이브러리 설치
 $ python3 -m venv bithumb-venv
 $ source bithumb-venv/bin/activate
 (bithumb-venv) $ pip install -r requirements.txt
 
-# 비트코인 자동매매 스크립트 실행
+# 4. 비트코인 자동매매 스크립트 실행
 (bithumb-venv) $ nohup python3 -u autotrade.py > output.log 2>&1 &
 
-# Streamlit 기반 시각화 웹앱 실행
+# 5. 인바운드 허용.
+# 🚨🚨🚨🚨
+# 기본적으로 AWS 서버는 보안으로 인해 모든 포트가 막혀있음.
+# AWS 서버에서 돌고 있는 시각화 대시보드를 열람하기 위해서는 즉, 외부에서 AWS 서버로 들어오는 Inbound Request를 특정 포트 (여기서는 8501) 에 대해 허용해야 한다!
+# 해당 인스턴스의 보안 그룹에서 인바운드 규칙에서 포트 범위를 8501로 하고, 기본적으로는 모든 IP (0.0.0.0) 가 접근할 수 있도록 허용한다.
+
+# 6. Streamlit 기반 시각화 웹앱 실행
 (bithumb-venv) nohup python3 -m streamlit run streamlit_app.py --server.port 8501 > streamlit.log 2>&1 &
 ```
