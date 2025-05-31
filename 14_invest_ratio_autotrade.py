@@ -12,7 +12,7 @@ SERPAPI_API_KEY = os.getenv("SERPAPI_API_KEY")
 # 뉴스 데이터 가져오는 함수
 def get_bitcoin_news(api_key, query="bitcoin", location="us", language="en", num_results=5):
     params = {
-        "engine": "google_news", "q": query, "gl": location,
+        "engine": "google_news", "q": f"{query} when:1d", "gl": location,
         "hl": language, "api_key": api_key
     }
     api_url = "https://serpapi.com/search.json"
@@ -59,10 +59,6 @@ def ai_trading():
                 "role": "system",
                 "content": """
                 You are an expert in Bitcoin investing.
-
-                You invest according to the following principles:
-                Rule No.1: Never lose money.
-                Rule No.2: Never forget Rule No.1.
 
                 Analyze the provided data:
                 1.  **Chart Data:** Multi-timeframe OHLCV data ('short_term': 1h, 'mid_term': 4h, 'long_term': daily).

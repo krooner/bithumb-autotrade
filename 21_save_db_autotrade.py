@@ -93,10 +93,6 @@ def ai_trading():
                 "content": """
                 You are an expert in Bitcoin investing.
 
-                You invest according to the following principles:
-                Rule No.1: Never lose money.
-                Rule No.2: Never forget Rule No.1.
-
                 Analyze the provided data:
                 1.  **Chart Data:** Multi-timeframe OHLCV data ('short_term': 1h, 'mid_term': 4h, 'long_term': daily).
                 2.  **News Data:** Recent Bitcoin news articles with 'title' and 'date'.
@@ -134,7 +130,6 @@ def execute_trade():
     # 빗썸 API 연결
     access = os.getenv("BITHUMB_ACCESS_KEY")
     secret = os.getenv("BITHUMB_SECRET_KEY")
-    print(access, secret)
     bithumb = python_bithumb.Bithumb(access, secret)
 
     # 잔고 확인
