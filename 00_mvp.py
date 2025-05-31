@@ -3,10 +3,6 @@ from dotenv import load_dotenv
 load_dotenv()
 import python_bithumb
 
-print(os.getenv("BITHUMB_ACCESS_KEY"))
-print(os.getenv("BITHUMB_SECRET_KEY"))
-print(os.getenv("OPENAI_API_KEY"))
-
 def ai_trading():
     # 1. 빗썸 차트 데이터 가져오기 (30일 일봉)
     df = python_bithumb.get_ohlcv("KRW-BTC", interval="day", count=30)
