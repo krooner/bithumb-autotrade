@@ -259,3 +259,27 @@ def execute_trade():
     
     # 데이터베이스 연결 종료
     conn.close()
+    
+    print(f"[{datetime.now().strftime('%Y-%m-%d %H:%M:%S')}] 트레이딩 작업 완료")
+
+# 스케줄링 실행을 위한 메인 함수
+def run_scheduler():
+    # 데이터베이스 초기화
+    init_db()
+    
+    print("비트코인 자동 트레이딩 시스템 시작...")
+    print("스케줄링된 실행 시간: 매일 09:00, 15:00, 21:00")
+    
+    # 매일 특정 시간에 작업 실행하도록 스케줄링
+    schedule.every().day.at("09:00").do(execute_trade)
+    schedule.every().day.at("15:00").do(execute_trade)
+    schedule.every().day.at("21:00").do(execute_trade)
+    
+    # 스케줄 루프 실행
+    while True:
+        schedule.run_pending()
+        time.sleep(60)  # 1분마다 스케줄 확인
+
+# 실행
+if __name__ == "__main__":
+    run_scheduler()
