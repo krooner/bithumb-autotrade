@@ -27,18 +27,34 @@ if __name__ == "__main__":
         print("### Error: Minimum order amounts must be at least 5000 KRW ###")
         exit(1)
 
+    current_price = python_bithumb.get_current_price("KRW-BTC") # 1 BTC price in KRW
+    # 1 btc : x = current_price : amount_krw
+    # x = amount_krw / current_price
+    amount_krw_to_btc = args.amount_krw / current_price
+
     if args.buy:
+
+        print(f"""
+            Amount to {'BUY' if args.buy else 'SELL'}: {args.amount_krw:.2f} KRW
+            Equivalent BTC Amount: {amount_krw_to_btc:.6f} BTC
+        """)
+
         if args.amount_krw >= 5000:
-            bithumb.buy_market_order("KRW-BTC", args.amount_krw)
             print("### Buy Order Executed ###")
+            bithumb.buy_market_order("KRW-BTC", args.amount_krw)
         else:
             print("### Buy Order Failed: Insufficient KRW (less than 5000 KRW) ###")
     
     elif args.sell:
-        current_price = python_bithumb.get_current_price("KRW-BTC")
-        if my_btc * current_price >= 5000:
-            bithumb.sell_market_order("KRW-BTC", my_btc)
+
+        print(f"""
+            Amount to {'BUY' if args.buy else 'SELL'}: {args.amount_krw:.2f} KRW
+            Equivalent BTC Amount: {amount_krw_to_btc:.6f} BTC
+        """)
+
+        if args.amount_krw  >= 5000:
             print("### Sell Order Executed ###")
+            bithumb.sell_market_order("KRW-BTC", amount_krw_to_btc)
         else:
             print("### Sell Order Failed: Insufficient BTC (less than 5000 KRW worth) ###")
 
