@@ -129,7 +129,7 @@ def ai_trading():
     # OpenAI GPT에게 판단 요청
     client = OpenAI()
     response = client.chat.completions.create(
-        model="gpt-4o",
+        model="gpt-4o-mini",
         messages=[
             {
                 "role": "system",
