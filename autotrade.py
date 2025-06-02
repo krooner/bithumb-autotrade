@@ -123,7 +123,7 @@ def ai_trading():
             "btc_price": current_price,
             "total_value": my_krw + (my_btc * current_price)
         },
-        "recent_trades": recent_trades
+        # "recent_trades": recent_trades
     }
 
     # OpenAI GPT에게 판단 요청
@@ -140,16 +140,8 @@ def ai_trading():
                 1. **Chart Data:** Multi-timeframe OHLCV data ('short_term': 1h, 'mid_term': 4h, 'long_term': daily).
                 2. **News Data:** Recent Bitcoin news articles with 'title' and 'date'.
                 3. **Current Balance:** Current KRW and BTC balances and current BTC price.
-                4. **Recent Trades:** History of recent trading decisions and their outcomes.
 
-                When analyzing recent trades:
-                - Evaluate if previous decisions were profitable
-                - Check if market conditions have changed since the last trade
-                - Consider how the market reacted to your previous decisions
-                - Learn from successful and unsuccessful trades
-                - Maintain consistency in your strategy unless there's a clear reason to change
-
-                **Task:** Based on technical analysis, news sentiment, and trading history, decide whether to **buy**, **sell**, or **hold** Bitcoin.
+                **Task:** Based on technical analysis and news sentiment, decide whether to **buy**, **sell**, or **hold** Bitcoin.
                 For buy or sell decisions, include a percentage (1-100) indicating what portion of available funds to use.
 
                 **Output Format:** Respond ONLY in JSON format like:
