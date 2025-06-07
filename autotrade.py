@@ -68,7 +68,7 @@ def get_recent_trades(limit=5):
 # 뉴스 데이터 가져오는 함수
 def get_bitcoin_news(api_key, query="bitcoin", location="us", language="en", num_results=5):
     params = {
-        "engine": "google_news", "q": query, "gl": location,
+        "engine": "google_news", "q": f"{query} when:1d", "gl": location,
         "hl": language, "api_key": api_key
     }
     api_url = "https://serpapi.com/search.json"
