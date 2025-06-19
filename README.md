@@ -56,12 +56,12 @@ SERPAPI_API_KEY="<SERPAPI API 키>"
 # 1. AWS EC2 인스턴스를 생성 및 해당 인스턴스에 접속
 # 2. Git Clone 및 API 키 입력
 $ git clone https://github.com/krooner/bithumb-autotrade.git
-$ cd bithumb-autotrade.git
+$ cd bithumb-autotrade
 $ vim .env
 # 주의: Bithumb API 키의 경우는 해당 인스턴스의 Public IP를 추가하여 새로 발급받은 것을 입력해야함.
 
 # 3. 가상 환경 생성 및 필요 라이브러리 설치
-$ python3 -m venv bithumb-venv
+$ python3 -m venv venv-bithumb
 $ source bithumb-venv/bin/activate
 (bithumb-venv) $ pip install -r requirements.txt
 
